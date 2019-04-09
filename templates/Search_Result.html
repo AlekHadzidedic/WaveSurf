@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>WaveSurf</title>
+</head>
+<body>
+<h1>WaveSurf</h1>
+
+<form action="http://localhost:5000/search/" method="POST">
+    {% if req.get('search_type') == 'DocID' %}
+        <input type="radio" name="search_type" value="DocID" checked="checked"> DocID Search
+        <input type="radio" name="search_type" value="Query"> Query Search
+    {% else %}
+        <input type="radio" name="search_type" value="DocID"> DocID Search
+        <input type="radio" name="search_type" value="Query" checked="checked"> Query Search
+    {% endif %}
+    <br>
+    <br>
+    <label>Collection:<select name="collection_select">
+        {% if req.get('collection_select') == 'UOttawa Computer Science Courses' %}
+        <option>UOttawa Computer Science Courses</option>
+        {% endif %}
+    </select>
+    </label>
+    <label>Search Model:<select name="search_select">
+        {% if req.get('search_select') == 'Boolean Retrieval' %}
+            <option selected="selected">Boolean Retrieval</option>
+            <option>VSM</option>
+        {% else %}
+            <option>Boolean Retrieval</option>
+            <option selected="selected">VSM</option>
+        {% endif %}
+    </select>
+    </label>
+    <br>
+    <br>
+    <input name="search" type="text" placeholder="{{ req.get('search') }}">
+    <input type="submit" value="Submit">
+    <br>
+    <br>
+</form>
+
+{% for result in response %}
+    <a href="/search/{{ result['DocID'] }}"> {{ result['Title'] }} </a>
+    <p>{{ result['Body'] }}</p>
+    <br>
+    <br>
+{% endfor %}
+
+
+</body>
+</html>

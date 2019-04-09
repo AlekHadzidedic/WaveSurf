@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>WaveSurf</title>
+</head>
+<body>
+<h1>WaveSurf</h1>
+
+<form action="http://localhost:5000/search/" method="POST">
+    <input type="radio" name="search_type" value="DocID" checked="checked"> DocID Search
+    <input type="radio" name="search_type" value="Query"> Query Search
+    <br>
+    <br>
+        <label>Collection:<select name="collection_select">
+        <option>UOttawa Computer Science Courses</option>
+    </select>
+    </label>
+    <label>Search Model:<select name="search_select">
+        <option>Boolean Retrieval</option>
+        <option>VSM</option>
+    </select>
+    </label>
+    <br>
+    <br>
+    <input name="search" type="text" placeholder="Search..">
+    <input type="submit" value="Submit">
+</form>
+
+</body>
+</html>
